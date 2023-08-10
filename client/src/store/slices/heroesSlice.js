@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
+import * as API from '../../api'
+//import axios from 'axios';
 
-const httpClient = axios.create({baseURL: 'http://localhost:5001/api'})
+//const httpClient = axios.create({baseURL: 'http://localhost:5001/api'})
 const HEROES_SLICE_NAME = 'heroes';
 
 const initialState = {
@@ -17,17 +18,17 @@ const heroesSlice = createSlice({
           //post
         builder.addCase(creayeHeroThunk.pending, (state) => {
             state.isFetching = true;
-            state.error = null
+            state.error = null;
         });
-   
+        builder.addCase(creayeHeroThunk.fulfilled, (state, { payload }) => {
+            state.isFetching = false;
+            state.heroes.push(payload);
+        });
         builder.addCase(creayeHeroThunk.rejected, (state, { payload }) => {
             state.isFetching = false;
             state.error = payload;
         });
-        builder.addCase(creayeHeroThunk.fulfilled, (state, { payload }) => {
-            state.isFetching = false;
-            state.heroes.push(payload)
-        })
+        
 
         builder.addCase(getHeroesThunk.pending, (state) => {
             state.isFetching = true;
@@ -77,7 +78,8 @@ const heroesSlice = createSlice({
 export const creayeHeroThunk = createAsyncThunk(`${HEROES_SLICE_NAME}/create`,
     async (payload, { rejectWithValue }) => {
     try {
-        const { data: { data: createdHero } } = await httpClient.post('/heroes', payload)
+        const { data: { data: createdHero } } = await API.createHero(payload);
+        console.log('payload', payload)
         return createdHero;
     }
     catch (err) {
@@ -91,7 +93,7 @@ export const getHeroesThunk = createAsyncThunk(
     `${HEROES_SLICE_NAME}/get`,
     async (payload, {rejectWithValue}) => {
         try {
-            const {data: {data: getHeroes} } = await httpClient.get('/heroes');
+            const {data: {data: getHeroes} } = await API.getHero();
             return getHeroes; //- action payload
         }
         catch (err) {
@@ -105,7 +107,7 @@ export const deleteHeroesThunk = createAsyncThunk(
     async (payload, { rejectWithValue }) => {
         try {
             //await httpClient.delete(`${HEROES_SLICE_NAME}/${payload}`)
-            await httpClient.delete(`${HEROES_SLICE_NAME}/${payload}`);
+            await API.deleteHero(payload);
             return payload;
         }
         catch (err) {
@@ -115,12 +117,12 @@ export const deleteHeroesThunk = createAsyncThunk(
     }
 );
 
-//patcj=h/api/id body
+//patch/api/id body
 export const updateHeroesThenk =  createAsyncThunk(
     `${HEROES_SLICE_NAME}/update`,
     async ({id, updatedData}, { rejectWithValue }) => {
         try {
-            const {data: {data: updatedHero}} = await httpClient.patch(`/heroes/${id}`, updatedData);
+            const {data: {data: updatedHero}} = await API.updateHero(id, updatedData);
             return updatedHero;
         }
         catch (err) {

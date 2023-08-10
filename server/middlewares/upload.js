@@ -15,15 +15,11 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    const mimeTypes = ["image/jpeg", "image/gif", "image/png"];
-    // cb(
-    //     null,
-    //     mimeTypes.some(mimeType => mimeType === file.mimetype)
-    // );
-    if (mimeTypes.some(mimeType => mimeType === file.mimetype)) {
-        return cb (null, true)
+    const MIMETYPES = ["image/jpg", "image/gif", "image/png"];
+    if (MIMETYPES.some(mimetype => mimetype === file.mimetype)) {
+      return cb(null, true);
     } else {
-        cb (createHttpError (415, 'Support only jpeg/gif/png files'))
+      cb(createHttpError(415, "Support only jpeg/gif/png files"));
     }
 };
 

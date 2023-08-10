@@ -2,17 +2,16 @@ const createHttpError = require('http-errors');
 const _ = require('lodash');
 const path = require('path');
 const { Hero } = require('../db/models/');
-const { IMAGES_FOLDER } = require("../constants");
+const { IMAGES_FOLDER } = require("./../constants");
 
 module.exports.creteHero = async (req, res, next) => {
     const { body, file } = req;
-    console.log('body', body);
-    console.log('req.file', req.file);
-    if (file) {
-        body.image = path.join("IMAGES_FOLDER", file.filename); 
+      if (file) {
+        body.image = path.join(IMAGES_FOLDER, file.filename); 
     }
     try {
-        const createdHero = await Hero.create(body);
+      const createdHero = await Hero.create(body);
+      console.log("body", body);
         if (!createdHero) {
             return next (createHttpError(500, 'Server Error'))
         }
