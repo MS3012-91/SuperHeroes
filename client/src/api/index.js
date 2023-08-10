@@ -2,7 +2,7 @@ import axios from "axios";
 
 const httpClient = axios.create({ baseURL: "http://localhost:5001/api" });
 
-export const createHero = (data) => httpClient.post('/heroes', data);
+export const createHero = (payload) => httpClient.post("/heroes", payload);
 
 export const getHero = () => httpClient.get("/heroes");
 

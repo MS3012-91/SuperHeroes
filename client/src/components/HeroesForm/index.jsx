@@ -18,8 +18,8 @@ function HeroForm({ createHero }) {
     formData.append("realName", values.realName);
     formData.append("originDescription", values.originDescription);
     formData.append("catchPhrase", values.catchPhrase);
-    formData.append("isGood", values.isGood);
     formData.append("heroPhoto", values.heroPhoto);
+    formData.append("isGood", values.isGood);
     createHero(formData);
     formikBag.resetForm();
   };
@@ -61,8 +61,8 @@ function HeroForm({ createHero }) {
             <input
               type="file"
               name="heroPhoto"
-              onChange={(event) => {
-                formikProps.setFieldValue("heroPhoto", event.target.files[0]);
+              onChange={e => {
+                formikProps.setFieldValue("heroPhoto", e.target.files[0]);
               }}
             />
           </label>

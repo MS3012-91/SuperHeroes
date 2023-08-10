@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import * as API from '../../api'
-//import axios from 'axios';
+import * as API from '../../api';
 
-//const httpClient = axios.create({baseURL: 'http://localhost:5001/api'})
 const HEROES_SLICE_NAME = 'heroes';
 
 const initialState = {
@@ -79,7 +77,6 @@ export const creayeHeroThunk = createAsyncThunk(`${HEROES_SLICE_NAME}/create`,
     async (payload, { rejectWithValue }) => {
     try {
         const { data: { data: createdHero } } = await API.createHero(payload);
-        console.log('payload', payload)
         return createdHero;
     }
     catch (err) {
@@ -93,7 +90,8 @@ export const getHeroesThunk = createAsyncThunk(
     `${HEROES_SLICE_NAME}/get`,
     async (payload, {rejectWithValue}) => {
         try {
-            const {data: {data: getHeroes} } = await API.getHero();
+            const { data: { data: getHeroes } } = await API.getHero();
+            console.log('getHeroes', getHeroes)
             return getHeroes; //- action payload
         }
         catch (err) {
@@ -106,7 +104,6 @@ export const deleteHeroesThunk = createAsyncThunk(
     `${HEROES_SLICE_NAME}/delete`,
     async (payload, { rejectWithValue }) => {
         try {
-            //await httpClient.delete(`${HEROES_SLICE_NAME}/${payload}`)
             await API.deleteHero(payload);
             return payload;
         }

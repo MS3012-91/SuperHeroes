@@ -1,5 +1,5 @@
-CONSTANTS = {
+const CONSTANTS = {
     STATIC_FOLDER: 'public',
-    IMAGES_FOLDER: 'images'
+    IMAGES_FOLDER: 'images',
 }
 module.exports = CONSTANTS;

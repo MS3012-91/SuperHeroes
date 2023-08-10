@@ -5,13 +5,14 @@ const { Hero } = require('../db/models/');
 const { IMAGES_FOLDER } = require("./../constants");
 
 module.exports.creteHero = async (req, res, next) => {
-    const { body, file } = req;
+  const { body, file } = req;
+  console.log("body", body);
       if (file) {
-        body.image = path.join(IMAGES_FOLDER, file.filename); 
-    }
+        body.image = path.join(IMAGES_FOLDER, file.filename);
+        console.log("body.image", body.image); //images\heroPhoto-1691693785590
+      }
     try {
       const createdHero = await Hero.create(body);
-      console.log("body", body);
         if (!createdHero) {
             return next (createHttpError(500, 'Server Error'))
         }
@@ -82,8 +83,3 @@ module.exports.deleteHero = async (req, res, next) => {
 };
 
 
-
-
-// module.exports.updateHero = async (req, res, next) => {};
-
-// module.exports.deleteHero = async (req, res, next) => {};
