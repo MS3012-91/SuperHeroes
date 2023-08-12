@@ -21,6 +21,7 @@ const heroesSlice = createSlice({
         builder.addCase(creayeHeroThunk.fulfilled, (state, { payload }) => {
             state.isFetching = false;
             state.heroes.push(payload);
+            console.log('payload', payload)  //image "images/heroPhoto-1691702809126"
         });
         builder.addCase(creayeHeroThunk.rejected, (state, { payload }) => {
             state.isFetching = false;
@@ -77,6 +78,7 @@ export const creayeHeroThunk = createAsyncThunk(`${HEROES_SLICE_NAME}/create`,
     async (payload, { rejectWithValue }) => {
     try {
         const { data: { data: createdHero } } = await API.createHero(payload);
+        console.log("createdHero", createdHero);
         return createdHero;
     }
     catch (err) {
@@ -91,7 +93,6 @@ export const getHeroesThunk = createAsyncThunk(
     async (payload, {rejectWithValue}) => {
         try {
             const { data: { data: getHeroes } } = await API.getHero();
-            console.log('getHeroes', getHeroes)
             return getHeroes; //- action payload
         }
         catch (err) {

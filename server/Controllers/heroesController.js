@@ -8,19 +8,25 @@ module.exports.creteHero = async (req, res, next) => {
   const { body, file } = req;
   console.log("body", body);
       if (file) {
-        body.image = path.join(IMAGES_FOLDER, file.filename);
+        // body.image = "images/" + req.file.filename;
+        //const imageMimeType = file.mimetype;
+        body.image = path.join(IMAGES_FOLDER, file.filename)
         console.log("body.image", body.image); //images\heroPhoto-1691693785590
       }
     try {
       const createdHero = await Hero.create(body);
-        if (!createdHero) {
-            return next (createHttpError(500, 'Server Error'))
-        }
-        const prerapedHero = _.omit(createdHero.get(), ['createdAt', 'updatedAt'])
-        res.status(201).send({ data: prerapedHero });
+      if (!createdHero) {
+        return next(createHttpError(500, "Server Error"));
+      }
+      const prerapedHero = _.omit(createdHero.get(), [
+        "createdAt",
+        "updatedAt",
+      ]);
+      res.status(201).send({ data: prerapedHero });
     }
-    catch (err) {
-        next(err)
+    catch (err) {console.log('err', err)
+      next(err)
+      
     }
 }
 
@@ -31,7 +37,7 @@ module.exports.getHeroes = async (req, res, next) => {
                 exclude: ['createdAt', 'updatedAt']
             }
         })
-        res.status(200).send({data:foundHeroes})
+      res.status(200).send({ data: foundHeroes })
     }
         catch (err) {
             next (err)

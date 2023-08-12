@@ -12,6 +12,7 @@ function HeroForm({ createHero }) {
     isGood: true,
     heroPhoto: "",
   };
+ 
   const handleSubmit = (values, formikBag) => {
     const formData = new FormData();
     formData.append("nickname", values.nickname);
@@ -27,12 +28,16 @@ function HeroForm({ createHero }) {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formikProps) => (
-        <Form>
+        <Form encType="multipart/form-data">
           <label>
             <span>Nickname:</span>
-            <Field type="text" name="nickname" placeholder="Nickname"></Field>
+            <Field
+              type="text"
+              name="nickname"
+              placeholder="Nickname"
+            ></Field>
           </label>
-          <label>
+          <label >
             <span>Real Name:</span>
             <Field type="text" name="realName" placeholder="Real Name"></Field>
           </label>
@@ -61,7 +66,8 @@ function HeroForm({ createHero }) {
             <input
               type="file"
               name="heroPhoto"
-              onChange={e => {
+              accept="image/*"
+              onChange={(e) => {
                 formikProps.setFieldValue("heroPhoto", e.target.files[0]);
               }}
             />
