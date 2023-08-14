@@ -1,10 +1,9 @@
 import HeroesPage from "./pages/HeroesPage";
 
-
 function App() {
   return (
-    <div>
-      <HeroesPage></HeroesPage>
+    <div className="heroesForm">
+      <HeroesPage/>
     </div>
   );
 }

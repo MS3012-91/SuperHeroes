@@ -1,0 +1,42 @@
+.form {
+    width: 800px;
+    max-width: 100%;
+    align-items:flex-start;
+    background-color: rgb(25, 10, 94);
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1 px solid antiquewhite;
+    padding-top: 2px;
+    padding-bottom: 2px;
+} 
+
+input::placeholder {
+    color: #38b2ac;
+    font-variant-caps: small-caps;
+    font-size: 14px;
+}
+
+input:valid {
+    color: blanchedalmond;
+}
+input:invalid {
+    color: rgb(255, 177, 147);
+}
+
+.textField {
+    align-self: center;
+    width: 80%;
+    border-bottom: 1px solid #38b2ac; 
+}
+
+.textField:hover, .textField:active{ background-color: rgb(119, 209, 221);}

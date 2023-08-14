@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.heroesForm{
+  max-width: 80%;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}

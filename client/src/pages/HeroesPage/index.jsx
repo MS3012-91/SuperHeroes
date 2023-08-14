@@ -1,13 +1,15 @@
-import React from 'react'
-import HeroForm from '../../components/HeroesForm';
-import HeroesList from '../../components/HeroesList';
+import React from "react";
+import HeroForm from "../../components/HeroesForm";
+import HeroesList from "../../components/HeroesList";
 
- function HeroesPage() {
+
+function HeroesPage() {
   return (
-      <>
-          <HeroForm />
-          <HeroesList/>
-      </>
-  )
+    <>
+      <HeroForm />
+      <HeroesList />
+     
+    </>
+  );
 }
 export default HeroesPage;

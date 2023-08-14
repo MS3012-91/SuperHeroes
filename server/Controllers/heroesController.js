@@ -8,10 +8,7 @@ module.exports.creteHero = async (req, res, next) => {
   const { body, file } = req;
   console.log("body", body);
       if (file) {
-        // body.image = "images/" + req.file.filename;
-        //const imageMimeType = file.mimetype;
         body.image = path.join(IMAGES_FOLDER, file.filename)
-        console.log("body.image", body.image); //images\heroPhoto-1691693785590
       }
     try {
       const createdHero = await Hero.create(body);
