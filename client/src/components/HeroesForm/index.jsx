@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, setFieldError } from "formik";
 import { connect } from "react-redux";
 import { creayeHeroThunk } from "../../store/slices/heroesSlice";
@@ -6,7 +6,6 @@ import { yupValidation } from "./yupValidation";
 import styles from "./heroesForm.module.css";
 
 const MAX_FILE_SIZE = 307200;
-
 const SUPPORTED_FORMATS = ["image/jpeg", "image/gif", "image/png"];
 
 function HeroForm({ createHero }) {
@@ -18,7 +17,9 @@ function HeroForm({ createHero }) {
     isGood: true,
     heroPhoto: "",
   };
- 
+
+  const [fileName, setFileName] = useState("");
+
   const handleSubmit = (values, formikBag) => {
     const formData = new FormData();
     formData.append("nickname", values.nickname);
@@ -32,12 +33,11 @@ function HeroForm({ createHero }) {
   };
 
   const validateFile = (file) => {
-    let error
-    if (!file) {}
-    else if (file.size <= MAX_FILE_SIZE.test(file)) {
-      error = "File is too big"
-    }
-    else if (
+    let error;
+    if (!file) {
+    } else if (file.size > MAX_FILE_SIZE.test(file)) {
+      error = "File is too big";
+    } else if (
       SUPPORTED_FORMATS.includes(file.type).test(
         "fileType",
         "Unsupported File Format",
@@ -46,18 +46,21 @@ function HeroForm({ createHero }) {
     ) {
       error = "Invalif file format";
     }
-    return error
-  }
+    return error;
+  };
 
   return (
-    // <div className={styles.container}>
-    //   <h1>Create your hero!</h1>
-      <Formik initialValues={initialValues} validationSchema={yupValidation} onSubmit={handleSubmit}>
-        {(formikProps) => (
-          <Form className={styles.form} encType="multipart/form-data">
+    <Formik
+      initialValues={initialValues}
+      validationSchema={yupValidation}
+      onSubmit={handleSubmit}
+    >
+      {(formikProps) => (
+        <Form className={styles.form} encType="multipart/form-data">
+          <div className={styles.createSuperHero}>
+            <h1> Create Super Hero</h1>
             <div className={styles.textField}>
               <label htmlFor="nickname"></label>
-              {/* <span>Nickname:</span> */}
               <Field
                 styles="textField"
                 type="text"
@@ -65,48 +68,73 @@ function HeroForm({ createHero }) {
                 placeholder="Nickname"
                 class="form-control"
               ></Field>
-              <ErrorMessage name="nickname" component="div" />
+              <ErrorMessage
+                name="nickname"
+                render={(msg) => (
+                  <div className={styles.errorMessage}> {msg} </div>
+                )}
+              />
             </div>
-            <label>
-              {/* <span>Real Name:</span> */}
-              <Field
-                type="text"
-                name="realName"
-                placeholder="Real Name"
-                class="form-control"
-              ></Field>
-              <ErrorMessage name="realName" component="div" />
-            </label>
-            <label>
-              {/* <span>Origin Description:</span> */}
-              <Field
-                type="text"
-                name="originDescription"
-                placeholder="OriginDescription"
-                class="form-control"
-              ></Field>
-              <ErrorMessage name="originDescription" component="div" />
-            </label>
-            <label>
-              {/* <span>Catch Phrase:</span> */}
-              <Field
-                type="text"
-                name="catchPhrase"
-                placeholder="Catch Phrase"
-                class="form-control"
-              ></Field>
-              <ErrorMessage name="catchPhrase" component="div" />
-            </label>
-            <label>
-              <Field
-                type="checkbox"
-                name="isGood"
-              ></Field>
-              <span>Is hero positive:</span>
-            </label>
-            <label>
-              <span>Hero photo:</span>
+            <div className={styles.textField}>
+              <label>
+                {/* <span>Real Name:</span> */}
+                <Field
+                  type="text"
+                  name="realName"
+                  placeholder="Real Name"
+                  class="form-control"
+                ></Field>
+                <ErrorMessage
+                  name="realName"
+                  render={(msg) => (
+                    <div className={styles.errorMessage}> {msg} </div>
+                  )}
+                />
+              </label>
+            </div>
+            <div className={styles.textField}>
+              <label>
+                <Field
+                  type="text"
+                  name="originDescription"
+                  placeholder="Origin Description"
+                  class="form-control"
+                ></Field>
+                <ErrorMessage
+                  name="originDescription"
+                  render={(msg) => (
+                    <div className={styles.errorMessage}> {msg} </div>
+                  )}
+                />
+              </label>
+            </div>
+            <div className={styles.textField}>
+              <label>
+                <Field
+                  type="text"
+                  name="catchPhrase"
+                  placeholder="Catch Phrase"
+                  class="form-control"
+                ></Field>
+                <ErrorMessage
+                  name="catchPhrase"
+                  render={(msg) => (
+                    <div className={styles.errorMessage}> {msg} </div>
+                  )}
+                />
+              </label>
+            </div>
+            <div className={styles.checkField}>
+              <label>
+                <span>Is hero positive:</span>
+                <Field type="checkbox" name="isGood"></Field>
+              </label>
+            </div>
+            <div className={styles.photoField}>
+              <label htmlFor="heroPhoto"> </label>
               <input
+                id="innerButton"
+                style={{ display: "none" }}
                 type="file"
                 name="heroPhoto"
                 accept="image/*"
@@ -116,17 +144,38 @@ function HeroForm({ createHero }) {
                     e.target.files[0],
                     true
                   );
+                  setFileName(e.target.files[0].name);
                   return validateFile();
                 }}
                 class="form-control"
               />
-              <ErrorMessage name="heroPhoto" component="div" />
-            </label>
-            <button type="submit">Create</button>
-          </Form>
-        )}
-      </Formik>
-   
+              <div className={styles.selectedFile}>
+                <span> {fileName} </span>
+              </div>
+              <button
+                className={styles.selectFileButton}
+                type="button"
+                onClick={(e) => {
+                  document.getElementById("innerButton").click();
+                  console.log("fileName", `${fileName}`);
+                }}
+              >
+                Select Hero Photo
+              </button>
+              <ErrorMessage
+                name="heroPhoto"
+                render={(msg) => (
+                  <div className={styles.errorMessage}> {msg} </div>
+                )}
+              />
+            </div>
+            <button className={styles.submitButton} type="submit">
+              Create
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }
 

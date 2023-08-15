@@ -20,34 +20,43 @@ const mapHeroes = (h) => {
     <li key={h.id}>
       <h2> {h.nickname}</h2>
       <div className={styles.mainElementOfList}>
-        <div className={styles.itemVsCheck}>
-          <div>
-            {" "}
+        <div>
             <img
               src={h.image ? `http://localhost:5001/${h.image}` : defaultPhoto}
               alt={h.nickname}
-            />
-          </div>
-          is Good:{" "}
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={h.isGood}
-            onChange={() => {
-              updateHero(h.id, { isGood: !h.isGood });
-            }}
           />
         </div>
-
         <div className={styles.textBlock}>
-          <p> Id: {h.id} </p>
-          <p> Real name: {h.realName}</p>
-          <p> Hero Description: {h.originDescription} </p>
-          <p> Catch phrase: {h.catchPhrase}</p>
+          <table>
+            <tr>
+              <td>Real name:</td>
+              <td>{h.realName ?<div> {h.realName}</div>: "Nobody knows" }</td>
+            </tr>
+            <tr>
+              <td>Hero description:</td>
+              <td>{h.originDescription ? <div>{h.originDescription}  </div>  : "We can't describe this Hero"} </td>
+            </tr>
+            <tr>
+              <td>Catch phrase:</td>
+              <td>{h.catchPhrase? <div> {h.catchPhrase} </div> : "He haven't any catch phrase"}</td>
+            </tr>
+            <tr>
+              <td>Is good: </td>
+              <td> <input
+                className="checkbox"
+                type="checkbox"
+                checked={h.isGood}
+                onChange={() => {
+                  updateHero(h.id, { isGood: !h.isGood });
+                }}
+              />
+              </td>
+            </tr>
+          </table>
         </div>
+        <button onClick={() => deleteHero(h.id)}>Delete</button>
       </div>
-      <button onClick={() => deleteHero(h.id)}>Delete</button>
-    </li>
+        </li>
   );
   };
   

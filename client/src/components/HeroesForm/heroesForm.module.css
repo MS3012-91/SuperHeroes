@@ -1,42 +1,158 @@
-.form {
-    width: 800px;
+:root {
+  --color-primary-text: #38b2ac;
+  --color-primary-bcc: rgb(25, 10, 94);
+  --color-accent-white: whitesmoke;
+  --color-error-message: red;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 26px;
+  }
+  .form {
     max-width: 100%;
-    align-items:flex-start;
-    background-color: rgb(25, 10, 94);
-    color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-   
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+  .form {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+}
+
+h1 {
+  color: var(--color-accent-white);
+  font-variant-caps: small-caps;
+  text-align: center;
+}
+
+.form {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px;
+  display: flex;
+  background-image: url("../HeroesList/captain-america-blue-superhero.jpg");
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-position: top 200px;
+  background-size: cover;
+}
+
+.createSuperHero {
+  max-width: 50%;
+  background-color: var(--color-primary-bcc);
+  color: var(--color-accent-white);
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 input {
-    padding: 10px;
-    width: 100%;
-    align-items: center;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1 px solid antiquewhite;
-    padding-top: 2px;
-    padding-bottom: 2px;
-} 
+  padding: 10px;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1 px solid var(--color-accent-white);
+}
 
-input::placeholder {
-    color: #38b2ac;
-    font-variant-caps: small-caps;
-    font-size: 14px;
+.checkbox {
+    transform: scale(1.5);
+}
+
+label {
+  border: none;
+}
+
+input::placeholder,
+.checkField span,
+.photoField > label > span,
+label,
+.submitButton {
+  color: var(--color-primary-text);
+  font-variant-caps: small-caps;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 input:valid {
-    color: blanchedalmond;
+  color: var(--color-accent-white);
+  font-size: 16px;
 }
-input:invalid {
-    color: rgb(255, 177, 147);
+
+input:active {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1 px solid var(--color-accent-white);
 }
 
 .textField {
-    align-self: center;
-    width: 80%;
-    border-bottom: 1px solid #38b2ac; 
+  align-self: center;
+  width: 80%;
+  border-bottom: 1px solid var(--color-primary-text);
 }
 
-.textField:hover, .textField:active{ background-color: rgb(119, 209, 221);}
+.textField:hover,
+.textField:active {
+  border: none;
+  border-bottom: 1 px solid var(--color-accent-white);
+}
+
+.errorMessage {
+  color: var(--color-error-message);
+  font-size: 14px;
+}
+
+.checkField {
+  width: 80%;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: first baseline;
+  justify-content: flex-start;
+  padding: 10px;
+  
+}
+
+.checkField span {
+  padding: 10px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.photoField {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.selectFileButton,
+.submitButton {
+  width: 120px;
+  height: 40px;
+  background-color: var(--color-primary-text);
+  border-radius: 10px;
+  border: 1px solid var(--color-accent-white);
+  color: var(--color-accent-white);
+  font-variant-caps: small-caps;
+  font-size: 14px;
+  font-weight: 300;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.submitButton {
+  align-self: center;
+  margin: 20px;
+}
+
+.selectedFile {
+  color: var(--color-primary-text);
+}

@@ -44,12 +44,12 @@ export const yupValidation = yup.object().shape({
     .string()
     .trim()
     .min(4, "Description is too short")
-    .max(300, "Description is too long"),
+    .max(100, "Description is too long"),
   catchPhrase: yup
     .string()
     .trim()
     .min(4, "Catch phrase is too short")
-    .max(300, "Catch phrase is too long"),
+    .max(100, "Catch phrase is too long"),
   heroPhoto: yup
     .mixed()
     .nullable()
