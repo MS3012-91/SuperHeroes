@@ -1,3 +1,3 @@
-module.exports.heroesController = require('./heroesController');
+module.exports.heroesController = require("./heroesController");
 
-module.exports.powersController = require('./powersController')
+module.exports.powersController = require("./powersController");

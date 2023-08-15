@@ -2,8 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class HeroPowers extends Model {
-    static associate(models) {
-    }
+    static associate(models) {}
   }
   HeroPowers.init(
     {

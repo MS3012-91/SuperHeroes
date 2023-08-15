@@ -42,7 +42,7 @@ li > h2 {
   }
   li {
     width: 90%;
-    height:auto;
+    height: auto;
   }
   .mainElementOfList {
     display: flex;
@@ -60,8 +60,8 @@ li > h2 {
     grid-template-columns: repeat(2, 50%);
   }
   li {
-   width: 90%;
-   min-height: 600px;
+    width: 90%;
+    min-height: 600px;
   }
   .mainElementOfList {
     justify-content: space-between;
@@ -101,8 +101,8 @@ tr {
 td {
   border-bottom: 2px dotted var(--color-text-main);
   font-size: 20px;
-  line-height: 1,4;
-  vertical-align:bottom;
+  line-height: 1, 4;
+  vertical-align: bottom;
 }
 
 td:nth-child(1) {
@@ -110,7 +110,7 @@ td:nth-child(1) {
   white-space: break-spaces;
   margin: 5px;
   font-weight: 600;
-  color:var(--color-text-main);  
+  color: var(--color-text-main);
 }
 
 td:nth-child(2) {
@@ -121,11 +121,12 @@ td:nth-child(2) {
 td:nth-child(2) > div {
   width: 100%;
   white-space: wrap;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+}
 
 td:nth-child(2):hover {
   white-space: normal;
-  text-overflow: clip; 
+  text-overflow: clip;
 }
 
 li button {

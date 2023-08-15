@@ -27,7 +27,6 @@ const SUPPORTED_FORMATS = ["image/jpeg", "image/gif", "image/png"];
 
 // const asyncValidationChecker = new AsyncValidationChecker();
 
-
 export const yupValidation = yup.object().shape({
   nickname: yup
     .string()

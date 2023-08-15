@@ -1,45 +1,38 @@
-const createHttpError = require('http-errors');
-const _ = require('lodash');
-const path = require('path');
-const { Hero } = require('../db/models/');
+const createHttpError = require("http-errors");
+const _ = require("lodash");
+const path = require("path");
+const { Hero } = require("../db/models/");
 const { IMAGES_FOLDER } = require("./../constants");
 
 module.exports.creteHero = async (req, res, next) => {
   const { body, file } = req;
-  console.log("body", body);
-      if (file) {
-        body.image = path.join(IMAGES_FOLDER, file.filename)
-      }
-    try {
-      const createdHero = await Hero.create(body);
-      if (!createdHero) {
-        return next(createHttpError(500, "Server Error"));
-      }
-      const prerapedHero = _.omit(createdHero.get(), [
-        "createdAt",
-        "updatedAt",
-      ]);
-      res.status(201).send({ data: prerapedHero });
+  if (file) {
+    body.image = path.join(IMAGES_FOLDER, file.filename);
+  }
+  try {
+    const createdHero = await Hero.create(body);
+    if (!createdHero) {
+      return next(createHttpError(500, "Server Error"));
     }
-    catch (err) {console.log('err', err)
-      next(err)
-      
-    }
-}
+    const prerapedHero = _.omit(createdHero.get(), ["createdAt", "updatedAt"]);
+    res.status(201).send({ data: prerapedHero });
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports.getHeroes = async (req, res, next) => {
-    try { 
-        const foundHeroes = await Hero.findAll({
-            attributes: {
-                exclude: ['createdAt', 'updatedAt']
-            }
-        })
-      res.status(200).send({ data: foundHeroes })
-    }
-        catch (err) {
-            next (err)
-        }
-    }
+  try {
+    const foundHeroes = await Hero.findAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+    res.status(200).send({ data: foundHeroes });
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports.updateHero = async (req, res, next) => {
   const {
     body,
@@ -84,5 +77,3 @@ module.exports.deleteHero = async (req, res, next) => {
     next(err);
   }
 };
-
-

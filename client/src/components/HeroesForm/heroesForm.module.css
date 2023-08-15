@@ -32,11 +32,11 @@ h1 {
 }
 
 .form {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px;
   display: flex;
-  background-image: url("../HeroesList/captain-america-blue-superhero.jpg");
+  background-image: url("./captain-america-blue-superhero.jpg");
   background-repeat: no-repeat;
   background-clip: content-box;
   background-position: top 200px;
@@ -61,7 +61,7 @@ input {
 }
 
 .checkbox {
-    transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 label {
@@ -115,7 +115,6 @@ input:active {
   align-items: first baseline;
   justify-content: flex-start;
   padding: 10px;
-  
 }
 
 .checkField span {

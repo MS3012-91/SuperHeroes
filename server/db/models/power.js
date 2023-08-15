@@ -1,14 +1,12 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Power extends Model {
-     static associate(models) {
-       Power.belongsToMany(models.Hero, {
-         through: "HeroPowers",
-         foreignKey: "powerId",
-       });
+    static associate(models) {
+      Power.belongsToMany(models.Hero, {
+        through: "HeroPowers",
+        foreignKey: "powerId",
+      });
     }
   }
   Power.init(
@@ -22,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Power",
-      underscored: true
+      underscored: true,
     }
   );
   return Power;

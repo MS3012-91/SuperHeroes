@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -14,24 +14,24 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'heroes',
-          key: 'id'
+          model: "heroes",
+          key: "id",
         },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       power_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'powers',
-          key: 'id'
+          model: "powers",
+          key: "id",
         },
-        onDelete: 'restrict',
-        onUpdate: 'cascade'
+        onDelete: "restrict",
+        onUpdate: "cascade",
       },
       origin: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
@@ -44,7 +44,7 @@ module.exports = {
     });
   },
 
-  async down (queryInterface, Sequelize) {
-  await queryInterface.dropTable("hero_powers");
-  }
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable("hero_powers");
+  },
 };
