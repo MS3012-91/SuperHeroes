@@ -77,7 +77,6 @@ function HeroForm({ createHero }) {
             </div>
             <div className={styles.textField}>
               <label>
-                {/* <span>Real Name:</span> */}
                 <Field
                   type="text"
                   name="realName"

@@ -4,29 +4,6 @@ const MAX_FILE_SIZE = 307200;
 
 const SUPPORTED_FORMATS = ["image/jpeg", "image/gif", "image/png"];
 
-// class AsyncValidationChecker {
-//   constructor() {
-//     this.isValid = false;
-//   }
-
-//   isInputValid = () => this.isValid;
-
-//   validateInput = debounce(
-//     async (value, triggerValidation) =>
-//       new Promise((resolve) => {
-//         setTimeout(() => {
-//           this.isValid = true;
-//           resolve(true);
-//           triggerValidation();
-//           console.log("validated from API");
-//         }, 3000);
-//       }),
-//     1000
-//   );
-// }
-
-// const asyncValidationChecker = new AsyncValidationChecker();
-
 export const yupValidation = yup.object().shape({
   nickname: yup
     .string()
