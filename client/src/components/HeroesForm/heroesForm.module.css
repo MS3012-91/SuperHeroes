@@ -48,7 +48,7 @@ h1 {
   background-color: var(--color-primary-bcc);
   color: var(--color-accent-white);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -124,7 +124,7 @@ input:active {
 }
 
 .photoField {
-  align-self: flex-end;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -145,6 +145,8 @@ input:active {
   margin: auto;
   text-align: center;
   overflow: hidden;
+  align-self: flex-end;
+  margin: 0;
 }
 
 .submitButton {
@@ -152,6 +154,8 @@ input:active {
   margin: 20px;
 }
 
-.selectedFile {
+/* .selectedFile {
   color: var(--color-primary-text);
-}
+  max-width: 50%;
+  overflow: hidden;
+} */

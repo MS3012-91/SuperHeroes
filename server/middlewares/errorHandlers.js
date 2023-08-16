@@ -7,5 +7,3 @@ module.exports.errorHandler = (err, req, res, next) => {
 
   res.status(status).send({ errors: [{ status, title }] });
 };
-
-//json:api

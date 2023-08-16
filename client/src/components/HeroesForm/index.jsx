@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Formik, Form, Field, ErrorMessage, setFieldError } from "formik";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 import { creayeHeroThunk } from "../../store/slices/heroesSlice";
 import { yupValidation } from "./yupValidation";
+import PreviewImg from "./previewImg";
 import styles from "./heroesForm.module.css";
 
 const MAX_FILE_SIZE = 307200;
@@ -15,10 +16,10 @@ function HeroForm({ createHero }) {
     originDescription: "",
     catchPhrase: "",
     isGood: true,
-    heroPhoto: "",
+    heroPhoto: null,
   };
 
-  const [fileName, setFileName] = useState("");
+  // const [fileName, setFileName] = useState("");
 
   const handleSubmit = (values, formikBag) => {
     const formData = new FormData();
@@ -35,7 +36,7 @@ function HeroForm({ createHero }) {
   const validateFile = (file) => {
     let error;
     if (!file) {
-    } else if (file.size > MAX_FILE_SIZE.test(file)) {
+    } else if (file.size > MAX_FILE_SIZE) {
       error = "File is too big";
     } else if (
       SUPPORTED_FORMATS.includes(file.type).test(
@@ -66,7 +67,7 @@ function HeroForm({ createHero }) {
                 type="text"
                 name="nickname"
                 placeholder="Nickname"
-                class="form-control"
+                className="form-control"
               ></Field>
               <ErrorMessage
                 name="nickname"
@@ -81,7 +82,7 @@ function HeroForm({ createHero }) {
                   type="text"
                   name="realName"
                   placeholder="Real Name"
-                  class="form-control"
+                  className="form-control"
                 ></Field>
                 <ErrorMessage
                   name="realName"
@@ -97,7 +98,7 @@ function HeroForm({ createHero }) {
                   type="text"
                   name="originDescription"
                   placeholder="Origin Description"
-                  class="form-control"
+                  className="form-control"
                 ></Field>
                 <ErrorMessage
                   name="originDescription"
@@ -113,7 +114,7 @@ function HeroForm({ createHero }) {
                   type="text"
                   name="catchPhrase"
                   placeholder="Catch Phrase"
-                  class="form-control"
+                  className="form-control"
                 ></Field>
                 <ErrorMessage
                   name="catchPhrase"
@@ -138,25 +139,23 @@ function HeroForm({ createHero }) {
                 name="heroPhoto"
                 accept="image/*"
                 onChange={(e) => {
-                  formikProps.setFieldValue(
-                    "heroPhoto",
-                    e.target.files[0],
-                    true
-                  );
-                  setFileName(e.target.files[0].name);
+                  formikProps.setFieldValue("heroPhoto", e.target.files[0]);
+                  // setFileName(e.target.files[0].name);
                   return validateFile();
                 }}
-                class="form-control"
+                className="form-control"
               />
+              {formikProps.values.heroPhoto && (
+                <PreviewImg file={formikProps.values.heroPhoto} />
+              )}
               <div className={styles.selectedFile}>
-                <span> {fileName} </span>
+                {/* <span> {fileName} </span> */}
               </div>
               <button
                 className={styles.selectFileButton}
                 type="button"
                 onClick={(e) => {
                   document.getElementById("innerButton").click();
-                  console.log("fileName", `${fileName}`);
                 }}
               >
                 Select Hero Photo
