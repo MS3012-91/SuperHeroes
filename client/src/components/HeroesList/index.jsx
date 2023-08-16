@@ -32,46 +32,49 @@ function HeroesList({
           </div>
           <div className={styles.textBlock}>
             <table>
-              <tr>
-                <td>Real name:</td>
-                <td>
-                  {h.realName ? <div> {h.realName}</div> : "Nobody knows"}
-                </td>
-              </tr>
-              <tr>
-                <td>Hero description:</td>
-                <td>
-                  {h.originDescription ? (
-                    <div>{h.originDescription} </div>
-                  ) : (
-                    "We can't describe this Hero"
-                  )}{" "}
-                </td>
-              </tr>
-              <tr>
-                <td>Catch phrase:</td>
-                <td>
-                  {h.catchPhrase ? (
-                    <div> {h.catchPhrase} </div>
-                  ) : (
-                    "He haven't any catch phrase"
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <td>Is good: </td>
-                <td>
-                  {" "}
-                  <input
-                    className="checkbox"
-                    type="checkbox"
-                    checked={h.isGood}
-                    onChange={() => {
-                      updateHero(h.id, { isGood: !h.isGood });
-                    }}
-                  />
-                </td>
-              </tr>
+              <thead/>
+              <tbody>
+                <tr>
+                  <td>Real name:</td>
+                  <td>
+                    {h.realName ? <div> {h.realName}</div> : "Nobody knows"}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hero description:</td>
+                  <td>
+                    {h.originDescription ? (
+                      <div>{h.originDescription} </div>
+                    ) : (
+                      "We can't describe this Hero"
+                    )}{" "}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Catch phrase:</td>
+                  <td>
+                    {h.catchPhrase ? (
+                      <div> {h.catchPhrase} </div>
+                    ) : (
+                      "He haven't any catch phrase"
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Is good: </td>
+                  <td>
+                    {" "}
+                    <input
+                      className="checkbox"
+                      type="checkbox"
+                      checked={h.isGood}
+                      onChange={() => {
+                        updateHero(h.id, { isGood: !h.isGood });
+                      }}
+                    />
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <button onClick={() => deleteHero(h.id)}>Delete</button>
