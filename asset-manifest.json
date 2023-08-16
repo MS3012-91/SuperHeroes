@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/SuperHeroes/static/css/main.f515feff.css",
+    "main.js": "/SuperHeroes/static/js/main.1c5af12a.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/SuperHeroes/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/1348460.jpg": "/SuperHeroes/static/media/1348460.51dbb20f95e9a5a0e5a3.jpg",
+    "static/media/captain-america-blue-superhero.jpg": "/SuperHeroes/static/media/captain-america-blue-superhero.bd5f17eee6f8bebdaa02.jpg",
+    "index.html": "/SuperHeroes/index.html",
+    "main.f515feff.css.map": "/SuperHeroes/static/css/main.f515feff.css.map",
+    "main.1c5af12a.js.map": "/SuperHeroes/static/js/main.1c5af12a.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/SuperHeroes/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f515feff.css",
+    "static/js/main.1c5af12a.js"
+  ]
+}
